@@ -27,19 +27,15 @@ export const getEvolucionDolarBlue = async (req, res) => {
 
     const arrayValores = [];
     Object.keys(valores).forEach((key) =>
-      arrayValores.push({
-        name: key,
-        rating: valores[key],
-      })
-    );
+      arrayValores.push(valores[key]));
 
     var j = day - 2;
     var arrayAux = [];
 
     for (var i = 0; i < day - 1; i++) {
       arrayAux.push({
-        valor: arrayValores[j],
-        date: moment().subtract(i + 1, 'days')
+        valor: arrayValores[j]._text,
+        date: moment().subtract(i + 1, "days").format("DD-MM-YYYY"),
       });
 
       j--;
@@ -47,15 +43,15 @@ export const getEvolucionDolarBlue = async (req, res) => {
 
     for (var i = day - 1; i < 31; i++) {
       arrayAux.push({
-        valor: arrayValores[i],
-        date: moment().subtract(i + 1, 'days')
+        valor: arrayValores[i]._text,
+        date: moment().subtract(i + 1, "days").format("DD-MM-YYYY"),
       });
     }
 
-    console.log(arrayAux)
-
     res.status(200);
     res.send(arrayAux);
+
+
   } catch (e) {
     res.sendStatus(500);
     console.log(e);
