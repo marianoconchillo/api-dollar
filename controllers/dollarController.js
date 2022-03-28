@@ -43,7 +43,7 @@ export const getEvolucionDolarBlue = async (req, res) => {
 
     for (var i = day - 1; i < 31; i++) {
       arrayAux.push({
-        valor: arrayValores[i]._text,
+        valor: (arrayValores[i]._text) || "",
         date: moment().subtract(i + 1, "days").format("DD-MM-YYYY"),
       });
     }
